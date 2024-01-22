@@ -1,7 +1,18 @@
+import { useState } from 'react';
+
 const Sort = () => {
+  const [isFilterVisible, setIsFilterVisible] = useState(false);
+  const [selectedFilterIndex, setSelectedFilterIndex] = useState(0);
+  const filterList = ['popularity', 'price', 'alphabet'];
+
+  const hideFilterListHandler = (index) => {
+    setSelectedFilterIndex(index);
+    setIsFilterVisible(false);
+  };
+
   return (
-    <div class="sort">
-      <div class="sort__label">
+    <div className="sort">
+      <div className="sort__label">
         <svg
           width="10"
           height="6"
@@ -14,15 +25,24 @@ const Sort = () => {
           />
         </svg>
         <b>Sort by:</b>
-        <span>popularity</span>
+        <span onClick={() => setIsFilterVisible((prevState) => !prevState)}>
+          {filterList[selectedFilterIndex]}
+        </span>
       </div>
-      <div class="sort__popup">
-        <ul>
-          <li class="active">popularity</li>
-          <li>price</li>
-          <li>alphabet</li>
-        </ul>
-      </div>
+      {isFilterVisible && (
+        <div className="sort__popup">
+          <ul>
+            {filterList.map((filterItem, index) => (
+              <li
+                key={index}
+                onClick={() => hideFilterListHandler(index)}
+                className={selectedFilterIndex === index ? 'active' : ''}>
+                {filterItem}
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
     </div>
   );
 };

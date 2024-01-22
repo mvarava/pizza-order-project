@@ -1,0 +1,135 @@
+[
+  {
+    "id": 0,
+    "imageUrl": "https://pizza.od.ua/upload/resize_cache/webp/iblock/d34/osqh5oszrf1o51r37wni4locre1slsgo.webp",
+    "title": "Prosciutto",
+    "types": [0, 1],
+    "sizes": [30],
+    "price": 255,
+    "category": 0,
+    "rating": 4
+  },
+  {
+    "id": 1,
+    "imageUrl": "https://pizza.od.ua/upload/resize_cache/webp/iblock/6f1/tfvnkekl7g22d3uadkoj5hzx21saxe1q.webp",
+    "title": "Mortadella",
+    "types": [0],
+    "sizes": [30],
+    "price": 255,
+    "category": 1,
+    "rating": 6
+  },
+  {
+    "id": 2,
+    "imageUrl": "https://pizza.od.ua/upload/resize_cache/webp/iblock/e12/zhr2xux5uyy01oqph7fv1k6flracmlcb.webp",
+    "title": "Pear Dorblu",
+    "types": [0, 1],
+    "sizes": [30],
+    "price": 255,
+    "category": 0,
+    "rating": 6
+  },
+  {
+    "id": 3,
+    "imageUrl": "https://pizza.od.ua/upload/resize_cache/webp/iblock/43b/tuiere3j1kjx7fa4lq1itvu5397u5f7w.webp",
+    "title": "Mutton Kebab",
+    "types": [0, 1],
+    "sizes": [25, 30, 35],
+    "price": 230,
+    "category": 0,
+    "rating": 4
+  },
+  {
+    "id": 4,
+    "imageUrl": "https://pizza.od.ua/upload/resize_cache/webp/iblock/828/q13rdjpplrwhhl9bu81zk00op8rolm3e.webp",
+    "title": "Pepperoni in Hawai",
+    "types": [1],
+    "sizes": [30, 35],
+    "price": 255,
+    "category": 0,
+    "rating": 3
+  },
+  {
+    "id": 5,
+    "imageUrl": "https://pizza.od.ua/upload/resize_cache/webp/upload/iblock/eb1/2evm4y7j6klj7s7tt8b17uc3g01nibx3.webp",
+    "title": "Teriyaki",
+    "types": [0, 1],
+    "sizes": [25, 30],
+    "price": 280,
+    "category": 0,
+    "rating": 5
+  },
+  {
+    "id": 6,
+    "imageUrl": "https://pizza.od.ua/upload/resize_cache/webp/upload/iblock/f38/f38b33ebe98b8cecec084e14553c608f.webp",
+    "title": "Four Cheese",
+    "types": [0],
+    "sizes": [25, 30, 35],
+    "price": 250,
+    "category": 0,
+    "rating": 8
+  },
+  {
+    "id": 7,
+    "imageUrl": "https://pizza.od.ua/upload/resize_cache/webp/iblock/828/8283f9b4963ced5f390dfb1388e40264.webp",
+    "title": "Chicken & Ham",
+    "types": [0, 1],
+    "sizes": [30, 35],
+    "price": 155,
+    "category": 0,
+    "rating": 9
+  },
+  {
+    "id": 8,
+    "imageUrl": "https://pizza.od.ua/upload/resize_cache/webp/iblock/083/083561499d7b208a5ea99c6a2c0ba01c.webp",
+    "title": "Mushroom",
+    "types": [0, 1],
+    "sizes": [30],
+    "price": 155,
+    "category": 0,
+    "rating": 10
+  },
+  {
+    "id": 9,
+    "imageUrl": "https://pizza.od.ua/upload/resize_cache/webp/iblock/bdc/bdcf96026a19b14224f95ba504db540b.webp",
+    "title": "Hawaiian",
+    "types": [1],
+    "sizes": [25, 30, 35],
+    "price": 220,
+    "category": 0,
+    "rating": 7
+  },
+
+  {
+    "id": 10,
+    "imageUrl": "https://pizza.od.ua/upload/resize_cache/webp/iblock/413/4137b487da5d06174448a8cde6b0863e.webp",
+    "title": "Super Meat",
+    "types": [1],
+    "sizes": [25, 30, 35],
+    "price": 250,
+    "category": 0,
+    "rating": 10
+  },
+
+  {
+    "id": 11,
+    "imageUrl": "https://pizza.od.ua/upload/resize_cache/webp/upload/iblock/f26/daee1tqq5qwr9tptcm0u52mfxskpiavd.webp",
+    "title": "Margarita",
+    "types": [0, 1],
+    "sizes": [25, 30, 35],
+    "price": 165,
+    "category": 0,
+    "rating": 9
+  },
+
+  {
+    "id": 12,
+    "imageUrl": "https://pizza.od.ua/upload/resize_cache/webp/iblock/e92/e925a93ce82efc86bd54f24749f51774.webp",
+    "title": "Chicken BBQ",
+    "types": [0, 1],
+    "sizes": [25, 30, 35],
+    "price": 220,
+    "category": 0,
+    "rating": 5
+  }
+]

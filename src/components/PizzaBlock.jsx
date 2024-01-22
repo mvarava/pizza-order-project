@@ -1,26 +1,40 @@
-const PizzaBlock = (props) => {
+import { useState } from 'react';
+
+const PizzaBlock = ({ title, price, imageUrl, sizes, types }) => {
+  const [selectedTypeIndex, setselectedTypeIndex] = useState(0);
+  const [selectedSizeIndex, setselectedSizeIndex] = useState(0);
+
+  const typeName = ['thin', 'traditional'];
+
   return (
-    <div class="pizza-block">
-      <img
-        class="pizza-block__image"
-        src="https://puc.com.ua/preset/slideShow_600_400/952ee0a6-63a2-4832-8b2b-ad0200c19f43-1-62cd778da5f9f.webp?1657638311"
-        alt="Pizza"
-      />
-      <h4 class="pizza-block__title">{props.title}</h4>
-      <div class="pizza-block__selector">
+    <div className="pizza-block">
+      <img className="pizza-block__image" src={imageUrl} alt="Pizza" />
+      <h4 className="pizza-block__title">{title}</h4>
+      <div className="pizza-block__selector">
         <ul>
-          <li class="active">thin</li>
-          <li>traditional</li>
+          {types.map((typeId) => (
+            <li
+              key={typeId}
+              onClick={() => setselectedTypeIndex(typeId)}
+              className={selectedTypeIndex === typeId ? 'active' : ''}>
+              {typeName[typeId]}
+            </li>
+          ))}
         </ul>
         <ul>
-          <li class="active">26 sm</li>
-          <li>30 sm</li>
-          <li>40 sm</li>
+          {sizes.map((size, index) => (
+            <li
+              key={size}
+              onClick={() => setselectedSizeIndex(index)}
+              className={selectedSizeIndex === index ? 'active' : ''}>
+              {size} sm
+            </li>
+          ))}
         </ul>
       </div>
-      <div class="pizza-block__bottom">
-        <div class="pizza-block__price">from {props.price} UAH</div>
-        <div class="button button--outline button--add">
+      <div className="pizza-block__bottom">
+        <div className="pizza-block__price">from {price} UAH</div>
+        <div className="button button--outline button--add">
           <svg
             width="12"
             height="12"
@@ -33,7 +47,7 @@ const PizzaBlock = (props) => {
             />
           </svg>
           <span>Add</span>
-          <i>2</i>
+          <i>0</i>
         </div>
       </div>
     </div>
