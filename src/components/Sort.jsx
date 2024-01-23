@@ -1,12 +1,18 @@
 import { useState } from 'react';
 
-const Sort = () => {
+const Sort = ({ selectedType, onChangeType }) => {
   const [isFilterVisible, setIsFilterVisible] = useState(false);
-  const [selectedFilterIndex, setSelectedFilterIndex] = useState(0);
-  const filterList = ['popularity', 'price', 'alphabet'];
+  const filterList = [
+    { name: 'popularity (DESC)', sortProperty: 'rating' },
+    { name: 'popularity (ASC)', sortProperty: '-rating' },
+    { name: 'price (DESC)', sortProperty: 'price' },
+    { name: 'price (ASC)', sortProperty: '-price' },
+    { name: 'alphabet (DESC)', sortProperty: 'title' },
+    { name: 'alphabet (ASC)', sortProperty: '-title' },
+  ];
 
   const hideFilterListHandler = (index) => {
-    setSelectedFilterIndex(index);
+    onChangeType(index);
     setIsFilterVisible(false);
   };
 
@@ -26,7 +32,7 @@ const Sort = () => {
         </svg>
         <b>Sort by:</b>
         <span onClick={() => setIsFilterVisible((prevState) => !prevState)}>
-          {filterList[selectedFilterIndex]}
+          {selectedType.name}
         </span>
       </div>
       {isFilterVisible && (
@@ -35,9 +41,9 @@ const Sort = () => {
             {filterList.map((filterItem, index) => (
               <li
                 key={index}
-                onClick={() => hideFilterListHandler(index)}
-                className={selectedFilterIndex === index ? 'active' : ''}>
-                {filterItem}
+                onClick={() => hideFilterListHandler(filterItem)}
+                className={selectedType.sortProperty === filterItem.sortProperty ? 'active' : ''}>
+                {filterItem.name}
               </li>
             ))}
           </ul>
