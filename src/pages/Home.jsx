@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import ReactPaginate from 'react-paginate';
 
 import PizzaSkeleton from '../components/PizzaBlock/PizzaSkeleton';
@@ -7,8 +7,11 @@ import { useEffect, useState } from 'react';
 import Categories from '../components/Categories';
 import PizzaBlock from '../components/PizzaBlock';
 import Pagination from '../components/Pagination';
+import { SearchContext } from '../App';
 
-const Home = ({ searchValue }) => {
+const Home = () => {
+  const { searchValue } = useContext(SearchContext);
+
   const [pizzaItems, setPizzaItems] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
@@ -27,7 +30,7 @@ const Home = ({ searchValue }) => {
     const search = searchValue ? `&search=${searchValue}` : '';
 
     fetch(
-      `https://65ae6f121dfbae409a74d2c4.mockapi.io/pizzas?page=${currentPage}&limit=4&${category}&sortBy=${sortBy}&order=${order}${search}`,
+      `https://65ae6f121dfbae409a74d2c4.mockapi.io/pizzas?page=${currentPage}&limit=8&${category}&sortBy=${sortBy}&order=${order}${search}`,
     )
       .then((res) => res.json())
       .then((json) => {
