@@ -1,5 +1,3 @@
-import { useState } from 'react';
-
 const Categories = ({ selectedCategoryIndex, onChangeCategory }) => {
   const categories = ['All', 'Meat', 'Grill', 'Spicy', 'Vegetarian'];
 

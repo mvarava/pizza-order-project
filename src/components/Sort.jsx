@@ -1,18 +1,24 @@
 import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { setSortType } from '../redux/slices/filterSlice';
 
-const Sort = ({ selectedType, onChangeType }) => {
+const filterList = [
+  { name: 'popularity (DESC)', sortProperty: 'rating' },
+  { name: 'popularity (ASC)', sortProperty: '-rating' },
+  { name: 'price (DESC)', sortProperty: 'price' },
+  { name: 'price (ASC)', sortProperty: '-price' },
+  { name: 'alphabet (DESC)', sortProperty: 'title' },
+  { name: 'alphabet (ASC)', sortProperty: '-title' },
+];
+
+const Sort = () => {
+  const selectedType = useSelector((state) => state.filter.sortType);
+  const dispatch = useDispatch();
+
   const [isFilterVisible, setIsFilterVisible] = useState(false);
-  const filterList = [
-    { name: 'popularity (DESC)', sortProperty: 'rating' },
-    { name: 'popularity (ASC)', sortProperty: '-rating' },
-    { name: 'price (DESC)', sortProperty: 'price' },
-    { name: 'price (ASC)', sortProperty: '-price' },
-    { name: 'alphabet (DESC)', sortProperty: 'title' },
-    { name: 'alphabet (ASC)', sortProperty: '-title' },
-  ];
 
   const hideFilterListHandler = (index) => {
-    onChangeType(index);
+    dispatch(setSortType(index));
     setIsFilterVisible(false);
   };
 

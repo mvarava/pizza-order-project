@@ -1,32 +1,38 @@
 import React, { useContext } from 'react';
-import ReactPaginate from 'react-paginate';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { setCategoryId } from '../redux/slices/filterSlice';
 
 import PizzaSkeleton from '../components/PizzaBlock/PizzaSkeleton';
 import Sort from '../components/Sort';
-import { useEffect, useState } from 'react';
 import Categories from '../components/Categories';
 import PizzaBlock from '../components/PizzaBlock';
 import Pagination from '../components/Pagination';
 import { SearchContext } from '../App';
 
 const Home = () => {
+  const { categoryId, sortType } = useSelector((state) => state.filter);
+  // const categoryId.categoryId = useSelector((state) => state.filter.categoryId);
+  // const sortType.sort = useSelector((state) => state.filter.sort);
+
+  const dispatch = useDispatch();
+
   const { searchValue } = useContext(SearchContext);
 
   const [pizzaItems, setPizzaItems] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
-  const [selectedCategoryIndex, setSelectedCategoryIndex] = useState(0);
-  const [selectedType, setSelectedType] = useState({
-    name: 'popularity',
-    sortProperty: 'rating',
-  });
+
+  const onChangeCategory = (id) => {
+    dispatch(setCategoryId(id));
+  };
 
   useEffect(() => {
     setIsLoading(true);
 
-    const sortBy = selectedType.sortProperty.replace('-', '');
-    const order = selectedType.sortProperty.includes('-') ? 'asc' : 'desc';
-    const category = selectedCategoryIndex > 0 ? `category=${selectedCategoryIndex}` : '';
+    const sortBy = sortType.sortProperty.replace('-', '');
+    const order = sortType.sortProperty.includes('-') ? 'asc' : 'desc';
+    const category = categoryId > 0 ? `category=${categoryId}` : '';
     const search = searchValue ? `&search=${searchValue}` : '';
 
     fetch(
@@ -39,7 +45,7 @@ const Home = () => {
       });
 
     window.scrollTo(0, 0);
-  }, [selectedCategoryIndex, selectedType, searchValue, currentPage]);
+  }, [categoryId, sortType, searchValue, currentPage]);
 
   const skeletons = [...new Array(6)].map((_, index) => <PizzaSkeleton key={index} />);
 
@@ -49,11 +55,8 @@ const Home = () => {
     <>
       <div className="container">
         <div className="content__top">
-          <Categories
-            selectedCategoryIndex={selectedCategoryIndex}
-            onChangeCategory={(id) => setSelectedCategoryIndex(id)}
-          />
-          <Sort selectedType={selectedType} onChangeType={(id) => setSelectedType(id)} />
+          <Categories selectedCategoryIndex={categoryId} onChangeCategory={onChangeCategory} />
+          <Sort />
         </div>
         <h2 className="content__title">All pizzas</h2>
         <div className="content__items">{isLoading ? skeletons : pizzas}</div>
