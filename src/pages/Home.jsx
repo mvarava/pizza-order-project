@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setCategoryId } from '../redux/slices/filterSlice';
+import axios from 'axios';
 
 import PizzaSkeleton from '../components/PizzaBlock/PizzaSkeleton';
 import Sort from '../components/Sort';
@@ -12,9 +13,6 @@ import { SearchContext } from '../App';
 
 const Home = () => {
   const { categoryId, sortType } = useSelector((state) => state.filter);
-  // const categoryId.categoryId = useSelector((state) => state.filter.categoryId);
-  // const sortType.sort = useSelector((state) => state.filter.sort);
-
   const dispatch = useDispatch();
 
   const { searchValue } = useContext(SearchContext);
@@ -35,12 +33,12 @@ const Home = () => {
     const category = categoryId > 0 ? `category=${categoryId}` : '';
     const search = searchValue ? `&search=${searchValue}` : '';
 
-    fetch(
-      `https://65ae6f121dfbae409a74d2c4.mockapi.io/pizzas?page=${currentPage}&limit=8&${category}&sortBy=${sortBy}&order=${order}${search}`,
-    )
-      .then((res) => res.json())
-      .then((json) => {
-        setPizzaItems(json);
+    axios
+      .get(
+        `https://65ae6f121dfbae409a74d2c4.mockapi.io/pizzas?page=${currentPage}&limit=8&${category}&sortBy=${sortBy}&order=${order}${search}`,
+      )
+      .then((res) => {
+        setPizzaItems(res.data);
         setIsLoading(false);
       });
 
