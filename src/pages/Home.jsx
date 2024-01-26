@@ -65,6 +65,7 @@ const Home = () => {
 
       navigate(`?${queryString}`);
     }
+
     isMounted.current = true;
   }, [categoryId, sortType, currentPage]);
 
