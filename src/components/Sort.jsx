@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { setSortType } from '../redux/slices/filterSlice';
+import { setSortType, sortSelector } from '../redux/slices/filterSlice';
 
 export const filterList = [
   { name: 'popularity (DESC)', sortProperty: 'rating' },
@@ -12,8 +12,9 @@ export const filterList = [
 ];
 
 const Sort = () => {
-  const selectedType = useSelector((state) => state.filter.sortType);
+  const { sortType } = useSelector(sortSelector);
   const dispatch = useDispatch();
+
   const sortRef = useRef();
 
   const [isFilterVisible, setIsFilterVisible] = useState(false);
@@ -52,9 +53,7 @@ const Sort = () => {
           />
         </svg>
         <b>Sort by:</b>
-        <span onClick={() => setIsFilterVisible((prevState) => !prevState)}>
-          {selectedType.name}
-        </span>
+        <span onClick={() => setIsFilterVisible((prevState) => !prevState)}>{sortType.name}</span>
       </div>
       {isFilterVisible && (
         <div className="sort__popup">
@@ -63,7 +62,7 @@ const Sort = () => {
               <li
                 key={index}
                 onClick={() => hideFilterListHandler(filterItem)}
-                className={selectedType.sortProperty === filterItem.sortProperty ? 'active' : ''}>
+                className={sortType.sortProperty === filterItem.sortProperty ? 'active' : ''}>
                 {filterItem.name}
               </li>
             ))}
