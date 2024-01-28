@@ -1,4 +1,11 @@
-const Categories = ({ selectedCategoryIndex, onChangeCategory }) => {
+import React from 'react';
+
+type CategoriesProps = {
+  selectedCategoryIndex: number;
+  onChangeCategory: any;
+};
+
+const Categories: React.FC<CategoriesProps> = ({ selectedCategoryIndex, onChangeCategory }) => {
   const categories = ['All', 'Meat', 'Grill', 'Spicy', 'Vegetarian'];
 
   return (

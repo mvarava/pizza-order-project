@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './PizzasFetchError.module.scss';
 
-const PizzasFetchError = () => {
+const PizzasFetchError: React.FC = () => {
   return (
     <div className={styles.error}>
       <h2>
