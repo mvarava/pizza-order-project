@@ -1,10 +1,9 @@
 import React, { useCallback } from 'react';
-import { useEffect, useRef } from 'react';
+import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
 
-import { fetchPizzas, pizzaDataSelector } from '../../redux/slices/pizzaSlice';
-import { setCategoryId, setPageCount, sortSelector } from '../../redux/slices/filterSlice';
+import { fetchPizzas } from '../../redux/pizza/asyncActions';
+import { pizzaDataSelector } from '../../redux/pizza/selectors';
 import PizzaSkeleton from '../PizzaBlock/PizzaSkeleton';
 import Sort from '../Sort';
 import Categories from '../Categories';
@@ -12,12 +11,11 @@ import PizzaBlock from '../PizzaBlock';
 import Pagination from '../Pagination';
 import PizzasFetchError from '../PizzasFetchError';
 import { useAppDispatch } from '../../redux/store';
+import { setCategoryId, setPageCount } from '../../redux/filter/slice';
+import { sortSelector } from '../../redux/filter/selectors';
 
 const Home: React.FC = () => {
   const dispatch = useAppDispatch();
-  const navigate = useNavigate();
-
-  const isMounted = useRef(false);
 
   const { categoryId, sortType, currentPage, searchValue } = useSelector(sortSelector);
   const { items, status } = useSelector(pizzaDataSelector);
@@ -48,46 +46,6 @@ const Home: React.FC = () => {
 
     window.scrollTo(0, 0);
   };
-
-  // useEffect(() => {
-  //   if (isMounted.current) {
-  //     const queryString = qs.stringify({
-  //       categoryId,
-  //       currentPage,
-  //       sortProperty: sortType.sortProperty,
-  //     });
-
-  //     navigate(`?${queryString}`);
-  //   }
-
-  //   // isMounted.current = true;
-  //   if (!window.location.search) {
-  //     dispatch(fetchPizzas({} as SearchPizzaParams));
-  //   }
-  // }, [categoryId, sortType, currentPage]);
-
-  // useEffect(() => {
-  //   if (window.location.search) {
-  //     const params = qs.parse(window.location.search.substring(1)) as unknown as SearchPizzaParams;
-
-  //     const sort = filterList.find((filter) => filter.sortProperty === params.sortBy);
-
-  //     // if (sort) {
-  //     //   params.sortBy = sort;
-  //     // }
-
-  //     console.log('Params: ', params);
-
-  //     dispatch(
-  //       setFilters({
-  //         searchValue: params.search,
-  //         categoryId: Number(params.category),
-  //         currentPage: Number(params.currentPage),
-  //         sortType: sort || filterList[0],
-  //       }),
-  //     );
-  //   }
-  // }, []);
 
   useEffect(() => {
     getPizzas();
