@@ -1,10 +1,14 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { SortPropertyEnum, setSortType, sortSelector } from '../redux/slices/filterSlice';
+import React, { memo, useEffect, useRef, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { Filter, SortPropertyEnum, setSortType } from '../redux/slices/filterSlice';
 
 type FilterItem = {
   name: string;
   sortProperty: SortPropertyEnum;
+};
+
+type SortProps = {
+  sortType: Filter;
 };
 
 export const filterList: FilterItem[] = [
@@ -16,10 +20,8 @@ export const filterList: FilterItem[] = [
   { name: 'alphabet (ASC)', sortProperty: SortPropertyEnum.TITLE_ASC },
 ];
 
-const Sort: React.FC = () => {
-  const { sortType } = useSelector(sortSelector);
+const Sort: React.FC<SortProps> = ({ sortType }) => {
   const dispatch = useDispatch();
-
   const sortRef = useRef<HTMLDivElement>(null);
 
   const [isFilterVisible, setIsFilterVisible] = useState(false);
@@ -78,4 +80,4 @@ const Sort: React.FC = () => {
   );
 };
 
-export default Sort;
+export default memo(Sort);

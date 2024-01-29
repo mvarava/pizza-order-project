@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 
 type CategoriesProps = {
   selectedCategoryIndex: number;
@@ -24,4 +24,4 @@ const Categories: React.FC<CategoriesProps> = ({ selectedCategoryIndex, onChange
   );
 };
 
-export default Categories;
+export default memo(Categories);
