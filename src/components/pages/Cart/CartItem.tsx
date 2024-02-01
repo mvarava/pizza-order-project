@@ -29,6 +29,8 @@ const CartItemBlock: React.FC<CartItemProps> = ({
     dispatch(
       addItem({
         id,
+        size,
+        type,
       } as CartItem),
     );
   };
@@ -47,7 +49,7 @@ const CartItemBlock: React.FC<CartItemProps> = ({
       <div className="cart__item-count">
         <button
           disabled={count === 1}
-          onClick={() => dispatch(decrementItem(id))}
+          onClick={() => dispatch(decrementItem({ id, size, type } as CartItem))}
           className="button button--outline button--circle cart__item-count-minus">
           <svg
             width="10"
@@ -89,7 +91,9 @@ const CartItemBlock: React.FC<CartItemProps> = ({
       <div className="cart__item-price">
         <b>{price * count} UAH</b>
       </div>
-      <div onClick={() => dispatch(removeItem(id))} className="cart__item-remove">
+      <div
+        onClick={() => dispatch(removeItem({ id, size, type } as CartItem))}
+        className="cart__item-remove">
         <div className="button button--outline button--circle">
           <svg
             width="10"

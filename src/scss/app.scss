@@ -37,6 +37,10 @@ body {
     grid-template-rows: repeat(1, 1fr);
     grid-column-gap: 11px;
 
+    .skeleton {
+      margin: 0 auto;
+    }
+
     @media (max-width: 1400px) {
       grid-template-columns: repeat(3, 1fr);
     }
@@ -59,6 +63,7 @@ body {
       .categories {
         width: 100%;
         overflow: auto;
+        margin-bottom: 10px;
 
         ul {
           width: 785px;
@@ -352,8 +357,9 @@ body {
 
   &--empty {
     margin: 80px auto;
-    width: 600px;
+    max-width: 600px;
     text-align: center;
+    padding: 10px;
 
     h2 {
       font-size: 36px;
@@ -385,6 +391,27 @@ body {
       margin: 0 auto;
       font-weight: 600;
       font-size: 18px;
+    }
+
+    @media (max-width: 645px) {
+      margin-top: 40px;
+
+      h2 {
+        font-size: 30px;
+      }
+
+      p {
+        font-size: 15px;
+      }
+
+      img {
+        width: 200px;
+      }
+
+      .button--black {
+        padding: 8px 0 8px;
+        width: 180px;
+      }
     }
   }
 }

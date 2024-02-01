@@ -36,7 +36,7 @@ const Header: React.FC = () => {
             </div>
           </div>
         </Link>
-        {pathname !== '/cart' && <Search />}
+        {pathname !== '/cart' && !pathname.includes('/pizza') && <Search />}
         <div className="header__cart">
           {pathname !== '/cart' && (
             <Link to="/cart" className="button button--cart">

@@ -3,7 +3,7 @@ import NotFound from './components/pages/NotFound';
 import './scss/app.scss';
 import Cart from './components/pages/Cart/Cart';
 import Home from './components/pages/Home';
-import FullPizza from './components/pages/FullPizza';
+import FullPizza from './components/pages/FullPizzaInfo';
 import MainLayout from './layouts/MainLayout';
 import React from 'react';
 

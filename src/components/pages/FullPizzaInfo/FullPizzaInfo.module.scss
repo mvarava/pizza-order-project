@@ -1,0 +1,34 @@
+.container {
+  width: 90%;
+  margin: 0 auto;
+  text-align: center;
+
+  img {
+    width: 360px;
+  }
+
+  h2 {
+    font-weight: 800;
+    margin-bottom: 10px;
+  }
+
+  p {
+    text-align: justify;
+    margin-bottom: 10px;
+  }
+
+  .ingredients {
+    text-align: justify;
+    margin-bottom: 10px;
+  }
+
+  .price {
+    font-size: 20px;
+  }
+
+  @media (max-width: 420px) {
+    img {
+      width: 260px;
+    }
+  }
+}
