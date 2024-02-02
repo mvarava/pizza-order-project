@@ -12,6 +12,7 @@ type CartItemProps = {
   price: number;
   count: number;
   imageUrl: string;
+  ingredients: string[];
 };
 
 const CartItemBlock: React.FC<CartItemProps> = ({
@@ -22,6 +23,7 @@ const CartItemBlock: React.FC<CartItemProps> = ({
   price,
   count,
   imageUrl,
+  ingredients,
 }) => {
   const dispatch = useDispatch();
 
@@ -91,6 +93,7 @@ const CartItemBlock: React.FC<CartItemProps> = ({
       <div className="cart__item-price">
         <b>{price * count} UAH</b>
       </div>
+
       <div
         onClick={() => dispatch(removeItem({ id, size, type } as CartItem))}
         className="cart__item-remove">
@@ -112,6 +115,12 @@ const CartItemBlock: React.FC<CartItemProps> = ({
           </svg>
         </div>
       </div>
+      {ingredients.length !== 0 && (
+        <div className="cart__item-ingredients">
+          <p>Remove: </p>
+          <span>{ingredients}</span>
+        </div>
+      )}
     </div>
   );
 };

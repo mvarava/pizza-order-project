@@ -23,8 +23,9 @@
   }
 
   .ingredients {
-    text-align: justify;
-    margin-bottom: 10px;
+    text-align: center;
+    font-weight: 700;
+    margin-top: 20px;
   }
 
   .price {
@@ -35,6 +36,44 @@
   @media (max-width: 420px) {
     img {
       width: 260px;
+    }
+  }
+}
+
+.ingredients-list {
+  display: flex;
+  flex-wrap: wrap;
+
+  li {
+    cursor: pointer;
+    padding: 5px;
+
+    &:first-of-type {
+      cursor: default;
+      padding: 8px;
+    }
+
+    .icon {
+      margin-left: 5px;
+
+      .first-line,
+      .second-line {
+        transform-origin: center;
+        transition-duration: 0.7s;
+      }
+
+      &:hover {
+        cursor: pointer;
+        .first-line {
+          transform: rotate(-45deg);
+          transition-duration: 0.7s;
+        }
+
+        .second-line {
+          transform: rotate(45deg);
+          transition-duration: 0.7s;
+        }
+      }
     }
   }
 }

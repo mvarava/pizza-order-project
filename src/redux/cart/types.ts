@@ -3,6 +3,7 @@ export type CartItem = {
   title: string;
   price: number;
   imageUrl: string;
+  ingredients: string[];
   type: string;
   size: number;
   count: number;

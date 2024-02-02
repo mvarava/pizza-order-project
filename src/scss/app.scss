@@ -289,6 +289,21 @@ body {
         }
       }
     }
+
+    &-ingredients {
+      position: absolute;
+      margin-top: 75px;
+
+      p {
+        font-size: 17px;
+        font-weight: 800;
+        display: inline;
+      }
+
+      span {
+        color: #696969;
+      }
+    }
   }
 
   &__bottom {
@@ -414,4 +429,9 @@ body {
       }
     }
   }
+}
+
+.selected {
+  color: $background;
+  text-decoration: line-through;
 }

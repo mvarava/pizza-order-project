@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import styles from './FullPizzaInfo.module.scss';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
@@ -6,6 +6,10 @@ import PizzaTypeSelector from '../../PizzaBlock/PizzaTypeSelector';
 import { CartItem } from '../../../redux/cart/types';
 import { useDispatch } from 'react-redux';
 import { addItem } from '../../../redux/cart/slice';
+
+type SelectedIngredients = {
+  [key: string]: boolean;
+};
 
 const typeName: string[] = ['thin', 'traditional'];
 
@@ -17,13 +21,15 @@ const FullPizzaInfo: React.FC = () => {
   const [selectedTypeIndex, setSelectedTypeIndex] = useState<number>(0);
   const [selectedSizeIndex, setSelectedSizeIndex] = useState<number>(0);
 
+  const [selectedIngredients, setSelectedIngredients] = useState<string[]>([]);
+
   const [pizza, setPizza] = useState<{
     id: string;
     imageUrl: string;
     title: string;
     prices: number[];
     description: string;
-    ingredients: string;
+    ingredients: string[];
     sizes: number[];
     types: number[];
   }>();
@@ -45,18 +51,45 @@ const FullPizzaInfo: React.FC = () => {
   }, [pizzaId]);
 
   const onClickAdd = () => {
-    const item: CartItem = {
-      id: pizza!.id,
-      title: pizza!.title,
-      price: pizza!.prices[selectedSizeIndex],
-      imageUrl: pizza!.imageUrl,
-      type: typeName[selectedTypeIndex],
-      size: pizza!.sizes[selectedSizeIndex],
-      count: 0,
-    };
+    if (pizza) {
+      const item: CartItem = {
+        id: pizza.id,
+        title: pizza.title,
+        price: pizza.prices[selectedSizeIndex],
+        imageUrl: pizza.imageUrl,
+        ingredients: selectedIngredients,
+        type: typeName[selectedTypeIndex],
+        size: pizza.sizes[selectedSizeIndex],
+        count: 0,
+      };
 
-    dispatch(addItem(item));
+      dispatch(addItem(item));
+    }
   };
+
+  const handleIngredientClick = (ingredient: string, ingredientIndex: number) => {
+    if (ingredientIndex === 0) {
+      return;
+    }
+
+    // setSelectedIngredients((prevIngredients) => ({
+    //   ...prevIngredients,
+    //   [ingredient]: !prevIngredients[ingredient],
+    // }));
+    const index = selectedIngredients.indexOf(ingredient);
+
+    if (index === -1) {
+      setSelectedIngredients((prevState) => [...prevState, ingredient]);
+    } else {
+      const updatedIngredients = [...selectedIngredients];
+      updatedIngredients.splice(index, 1);
+      setSelectedIngredients(updatedIngredients);
+    }
+  };
+
+  useEffect(() => {
+    console.log(selectedIngredients);
+  }, [selectedIngredients]);
 
   if (!pizza) {
     return (
@@ -67,12 +100,56 @@ const FullPizzaInfo: React.FC = () => {
     );
   }
 
+  const pizzaIngredients = (
+    <ul className={styles['ingredients-list']}>
+      {pizza.ingredients.map((ingredient, index) => (
+        <li
+          key={index}
+          onClick={() => handleIngredientClick(ingredient, index)}
+          className={selectedIngredients.includes(ingredient) ? 'selected' : ''}>
+          {ingredient[0].toLocaleUpperCase() + ingredient.slice(1)}
+          {index !== 0 && (
+            <svg
+              className={styles.icon}
+              width="20"
+              height="20"
+              viewBox="0 0 20 20"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg">
+              <circle cx="10" cy="10" r="9" stroke="#FF0000" strokeWidth="2" />
+              <line
+                className={styles['first-line']}
+                x1="5"
+                y1="5"
+                x2="15"
+                y2="15"
+                stroke="#FF0000"
+                strokeWidth="2"
+              />
+              <line
+                className={styles['second-line']}
+                x1="5"
+                y1="15"
+                x2="15"
+                y2="5"
+                stroke="#FF0000"
+                strokeWidth="2"
+              />
+            </svg>
+          )}
+          {/* {index === pizza.ingredients.length - 1 ? '' : ', '} */}
+        </li>
+      ))}
+    </ul>
+  );
+
   return (
     <div className={styles.container}>
       <img src={pizza.imageUrl} alt="Pizza" />
       <h2>{pizza.title}</h2>
       <p>{pizza.description}</p>
-      <h4 className={styles.ingredients}>Ingredients: {pizza.ingredients}</h4>
+      <h3 className={styles.ingredients}>Ingredients: </h3>
+      {pizzaIngredients}
       <div className={styles.selector}>
         <PizzaTypeSelector
           sizes={pizza.sizes}
