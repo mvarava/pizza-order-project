@@ -15,7 +15,7 @@ type SortProps = {
 export const filterList: FilterItem[] = [
   { name: 'popularity (DESC)', sortProperty: SortPropertyEnum.RATING_DESC },
   { name: 'popularity (ASC)', sortProperty: SortPropertyEnum.RATING_ASC },
-  { name: 'price (DESC)', sortProperty: SortPropertyEnum.PRICE_ASC },
+  { name: 'price (DESC)', sortProperty: SortPropertyEnum.PRICE_DESC },
   { name: 'price (ASC)', sortProperty: SortPropertyEnum.PRICE_ASC },
   { name: 'alphabet (DESC)', sortProperty: SortPropertyEnum.TITLE_DESC },
   { name: 'alphabet (ASC)', sortProperty: SortPropertyEnum.TITLE_ASC },

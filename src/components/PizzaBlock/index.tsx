@@ -19,7 +19,15 @@ type PizzaBlockProps = {
   weights: number[];
 };
 
-const PizzaBlock: React.FC<PizzaBlockProps> = ({ id, title, prices, imageUrl, sizes, types }) => {
+const PizzaBlock: React.FC<PizzaBlockProps> = ({
+  id,
+  imageUrl,
+  title,
+  types,
+  prices,
+  sizes,
+  weights,
+}) => {
   const dispatch = useDispatch();
 
   const cartItem = useSelector(cartItemSelectorById(id));
@@ -28,10 +36,12 @@ const PizzaBlock: React.FC<PizzaBlockProps> = ({ id, title, prices, imageUrl, si
     .reduce((sum, cur) => sum + cur.count, 0);
 
   const [selectedTypeIndex, setSelectedTypeIndex] = useState<number>(0);
+
   const [selectedSizeIndex, setSelectedSizeIndex] = useState<number>(0);
 
   const currentPizzaSize = sizes[selectedSizeIndex];
   const currentPizzaPrice = prices[selectedSizeIndex];
+  const currentPizzaWeight = weights[selectedSizeIndex];
 
   const onClickAdd = () => {
     const item: CartItem = {
@@ -53,6 +63,7 @@ const PizzaBlock: React.FC<PizzaBlockProps> = ({ id, title, prices, imageUrl, si
         <Link to={`/pizza/${id}`}>
           <img className="pizza-block__image" src={imageUrl} alt="Pizza" />
           <h4 className="pizza-block__title">{title}</h4>
+          <h5 className="pizza-block__weight">{currentPizzaWeight}±50 g</h5>
         </Link>
         <PizzaTypeSelector
           sizes={sizes}

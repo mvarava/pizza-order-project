@@ -21,7 +21,7 @@ const FullPizzaInfo: React.FC = () => {
     id: string;
     imageUrl: string;
     title: string;
-    price: number;
+    prices: number[];
     description: string;
     ingredients: string;
     sizes: number[];
@@ -48,7 +48,7 @@ const FullPizzaInfo: React.FC = () => {
     const item: CartItem = {
       id: pizza!.id,
       title: pizza!.title,
-      price: pizza!.price,
+      price: pizza!.prices[selectedSizeIndex],
       imageUrl: pizza!.imageUrl,
       type: typeName[selectedTypeIndex],
       size: pizza!.sizes[selectedSizeIndex],
@@ -73,15 +73,17 @@ const FullPizzaInfo: React.FC = () => {
       <h2>{pizza.title}</h2>
       <p>{pizza.description}</p>
       <h4 className={styles.ingredients}>Ingredients: {pizza.ingredients}</h4>
-      <PizzaTypeSelector
-        sizes={pizza.sizes}
-        types={pizza.types}
-        selectedTypeIndex={selectedTypeIndex}
-        selectedSizeIndex={selectedSizeIndex}
-        changeType={setSelectedTypeIndex}
-        changeSize={setSelectedSizeIndex}
-      />
-      <h4 className={styles.price}>{pizza.price} UAH</h4>
+      <div className={styles.selector}>
+        <PizzaTypeSelector
+          sizes={pizza.sizes}
+          types={pizza.types}
+          selectedTypeIndex={selectedTypeIndex}
+          selectedSizeIndex={selectedSizeIndex}
+          changeType={setSelectedTypeIndex}
+          changeSize={setSelectedSizeIndex}
+        />
+      </div>
+      <h4 className={styles.price}>{pizza.prices[selectedSizeIndex]} UAH</h4>
       <button onClick={onClickAdd} className="button button--outline button--add">
         <svg
           width="12"

@@ -3,8 +3,8 @@ export enum SortPropertyEnum {
   RATING_ASC = '-rating',
   TITLE_DESC = 'title',
   TITLE_ASC = '-title',
-  PRICE_DESC = 'price',
-  PRICE_ASC = '-price',
+  PRICE_DESC = 'prices',
+  PRICE_ASC = '-prices',
 }
 
 export type Filter = {
