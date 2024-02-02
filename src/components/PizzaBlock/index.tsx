@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { CartItem } from '../../redux/cart/types';
@@ -11,14 +11,15 @@ const typeName: string[] = ['thin', 'traditional'];
 
 type PizzaBlockProps = {
   id: string;
-  title: string;
-  price: number;
   imageUrl: string;
-  sizes: number[];
+  title: string;
   types: number[];
+  prices: number[];
+  sizes: number[];
+  weights: number[];
 };
 
-const PizzaBlock: React.FC<PizzaBlockProps> = ({ id, title, price, imageUrl, sizes, types }) => {
+const PizzaBlock: React.FC<PizzaBlockProps> = ({ id, title, prices, imageUrl, sizes, types }) => {
   const dispatch = useDispatch();
 
   const cartItem = useSelector(cartItemSelectorById(id));
@@ -26,19 +27,17 @@ const PizzaBlock: React.FC<PizzaBlockProps> = ({ id, title, price, imageUrl, siz
     .items.filter((item) => item.id === cartItem?.id)
     .reduce((sum, cur) => sum + cur.count, 0);
 
-  const addedCount = cartItem ? cartItem.count : 0;
-
   const [selectedTypeIndex, setSelectedTypeIndex] = useState<number>(0);
   const [selectedSizeIndex, setSelectedSizeIndex] = useState<number>(0);
-  const [newPrice, setNewPrice] = useState<number>(price);
 
   const currentPizzaSize = sizes[selectedSizeIndex];
+  const currentPizzaPrice = prices[selectedSizeIndex];
 
   const onClickAdd = () => {
     const item: CartItem = {
       id,
       title,
-      price: newPrice,
+      price: currentPizzaPrice,
       imageUrl,
       type: typeName[selectedTypeIndex],
       size: currentPizzaSize,
@@ -47,14 +46,6 @@ const PizzaBlock: React.FC<PizzaBlockProps> = ({ id, title, price, imageUrl, siz
 
     dispatch(addItem(item));
   };
-
-  useEffect(() => {
-    if (currentPizzaSize !== sizes[0]) {
-      setNewPrice(() => Math.floor(price * (1 + currentPizzaSize / 100)));
-    } else {
-      setNewPrice(price);
-    }
-  }, [currentPizzaSize]);
 
   return (
     <div className="pizza-block-wrapper">
@@ -72,7 +63,7 @@ const PizzaBlock: React.FC<PizzaBlockProps> = ({ id, title, price, imageUrl, siz
           changeSize={setSelectedSizeIndex}
         />
         <div className="pizza-block__bottom">
-          <div className="pizza-block__price">from {newPrice} UAH</div>
+          <div className="pizza-block__price">from {currentPizzaPrice} UAH</div>
           <button onClick={onClickAdd} className="button button--outline button--add">
             <svg
               width="12"
