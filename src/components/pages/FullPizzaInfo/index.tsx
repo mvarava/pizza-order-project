@@ -19,7 +19,6 @@ const FullPizzaInfo: React.FC = () => {
   const [selectedSizeIndex, setSelectedSizeIndex] = useState<number>(0);
 
   const [selectedIngredients, setSelectedIngredients] = useState<string[]>([]);
-  const [additionalIngredients, setAdditionalIngredients] = useState<string[]>([]);
 
   const [pizza, setPizza] = useState<{
     id: string;
@@ -80,10 +79,6 @@ const FullPizzaInfo: React.FC = () => {
       setSelectedIngredients(updatedIngredients);
     }
   };
-
-  useEffect(() => {
-    console.log(selectedIngredients);
-  }, [selectedIngredients]);
 
   if (!pizza) {
     return (

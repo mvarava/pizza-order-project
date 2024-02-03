@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 
 const typeName: string[] = ['thin', 'traditional'];
 
@@ -45,4 +45,4 @@ const PizzaTypeSelector: React.FC<PizzaTypeSelectorProps> = ({
   );
 };
 
-export default PizzaTypeSelector;
+export default memo(PizzaTypeSelector);

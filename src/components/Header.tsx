@@ -4,9 +4,11 @@ import { useSelector } from 'react-redux';
 import logoSvg from '../assets/img/pizza-logo.svg';
 import Search from './Search';
 import { cartSelector } from '../redux/cart/selectors';
-import React, { useEffect, useRef } from 'react';
+import React, { memo, useEffect, useRef } from 'react';
+import { useWhyDidYouUpdate } from 'ahooks';
 
 const Header: React.FC = () => {
+  console.log(useWhyDidYouUpdate);
   const { items, totalPrice } = useSelector(cartSelector);
 
   const { pathname } = useLocation();
