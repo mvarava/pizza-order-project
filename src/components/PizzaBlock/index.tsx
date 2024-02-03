@@ -16,6 +16,7 @@ type PizzaBlockProps = {
   types: number[];
   prices: number[];
   ingredients: string[];
+  additional: string[];
   sizes: number[];
   weights: number[];
 };
@@ -27,6 +28,7 @@ const PizzaBlock: React.FC<PizzaBlockProps> = ({
   types,
   prices,
   ingredients,
+  additional,
   sizes,
   weights,
 }) => {

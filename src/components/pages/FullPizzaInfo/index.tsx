@@ -1,15 +1,12 @@
 import React, { useEffect, useRef, useState } from 'react';
 import styles from './FullPizzaInfo.module.scss';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, Link } from 'react-router-dom';
 import axios from 'axios';
 import PizzaTypeSelector from '../../PizzaBlock/PizzaTypeSelector';
 import { CartItem } from '../../../redux/cart/types';
 import { useDispatch } from 'react-redux';
 import { addItem } from '../../../redux/cart/slice';
-
-type SelectedIngredients = {
-  [key: string]: boolean;
-};
+import AdditionalIngredient from './AdditionalIngredient';
 
 const typeName: string[] = ['thin', 'traditional'];
 
@@ -22,6 +19,7 @@ const FullPizzaInfo: React.FC = () => {
   const [selectedSizeIndex, setSelectedSizeIndex] = useState<number>(0);
 
   const [selectedIngredients, setSelectedIngredients] = useState<string[]>([]);
+  const [additionalIngredients, setAdditionalIngredients] = useState<string[]>([]);
 
   const [pizza, setPizza] = useState<{
     id: string;
@@ -72,10 +70,6 @@ const FullPizzaInfo: React.FC = () => {
       return;
     }
 
-    // setSelectedIngredients((prevIngredients) => ({
-    //   ...prevIngredients,
-    //   [ingredient]: !prevIngredients[ingredient],
-    // }));
     const index = selectedIngredients.indexOf(ingredient);
 
     if (index === -1) {
@@ -108,36 +102,53 @@ const FullPizzaInfo: React.FC = () => {
           onClick={() => handleIngredientClick(ingredient, index)}
           className={selectedIngredients.includes(ingredient) ? 'selected' : ''}>
           {ingredient[0].toLocaleUpperCase() + ingredient.slice(1)}
-          {index !== 0 && (
-            <svg
-              className={styles.icon}
-              width="20"
-              height="20"
-              viewBox="0 0 20 20"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg">
-              <circle cx="10" cy="10" r="9" stroke="#FF0000" strokeWidth="2" />
-              <line
-                className={styles['first-line']}
-                x1="5"
-                y1="5"
-                x2="15"
-                y2="15"
-                stroke="#FF0000"
-                strokeWidth="2"
-              />
-              <line
-                className={styles['second-line']}
-                x1="5"
-                y1="15"
-                x2="15"
-                y2="5"
-                stroke="#FF0000"
-                strokeWidth="2"
-              />
-            </svg>
-          )}
-          {/* {index === pizza.ingredients.length - 1 ? '' : ', '} */}
+          {selectedIngredients.includes(ingredient)
+            ? index !== 0 && (
+                <svg
+                  className={styles['icon-active']}
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  width="20"
+                  height="20"
+                  fill="none"
+                  stroke="blue"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round">
+                  <circle cx="12" cy="12" r="10" />
+                  <line x1="12" y1="6" x2="12" y2="18" />
+                  <line x1="6" y1="12" x2="18" y2="12" />
+                </svg>
+              )
+            : index !== 0 && (
+                <svg
+                  className={styles.icon}
+                  width="20"
+                  height="20"
+                  viewBox="0 0 20 20"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="10" cy="10" r="9" stroke="#FF0000" strokeWidth="2" />
+                  <line
+                    className={styles['first-line']}
+                    x1="5"
+                    y1="5"
+                    x2="15"
+                    y2="15"
+                    stroke="#FF0000"
+                    strokeWidth="2"
+                  />
+                  <line
+                    className={styles['second-line']}
+                    x1="5"
+                    y1="15"
+                    x2="15"
+                    y2="5"
+                    stroke="#FF0000"
+                    strokeWidth="2"
+                  />
+                </svg>
+              )}
         </li>
       ))}
     </ul>

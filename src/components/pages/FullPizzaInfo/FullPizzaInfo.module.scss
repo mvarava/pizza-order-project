@@ -75,5 +75,45 @@
         }
       }
     }
+
+    .icon-active {
+      margin-left: 5px;
+      transition-duration: 0.7s;
+
+      &:hover {
+        stroke: rgb(0, 85, 128);
+        transition-duration: 0.7s;
+      }
+    }
+  }
+}
+
+.additional {
+  ul {
+    display: flex;
+    flex-wrap: wrap;
+
+    li {
+      background-color: #f9f9f9;
+      padding: 13px 30px;
+      border-radius: 30px;
+      margin-right: 10px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.2s ease-in-out;
+
+      &:hover {
+        background-color: darken(#f9f9f9, 2%);
+      }
+
+      &:active {
+        background-color: darken(#f9f9f9, 5%);
+      }
+
+      &.active {
+        background-color: #282828;
+        color: #fff;
+      }
+    }
   }
 }
