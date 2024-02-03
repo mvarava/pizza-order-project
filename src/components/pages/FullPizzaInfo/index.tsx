@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './FullPizzaInfo.module.scss';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import axios from 'axios';
@@ -6,7 +6,6 @@ import PizzaTypeSelector from '../../PizzaBlock/PizzaTypeSelector';
 import { CartItem } from '../../../redux/cart/types';
 import { useDispatch } from 'react-redux';
 import { addItem } from '../../../redux/cart/slice';
-import AdditionalIngredient from './AdditionalIngredient';
 
 const typeName: string[] = ['thin', 'traditional'];
 
