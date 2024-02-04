@@ -2,14 +2,14 @@ import React, { useEffect, useState } from 'react';
 import styles from './FullPizzaInfo.module.scss';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import axios from 'axios';
-import PizzaTypeSelector from '../../PizzaBlock/PizzaTypeSelector';
+import { PizzaTypeSelector } from '../../../components';
 import { CartItem } from '../../../redux/cart/types';
 import { useDispatch } from 'react-redux';
 import { addItem } from '../../../redux/cart/slice';
 
 const typeName: string[] = ['thin', 'traditional'];
 
-const FullPizzaInfo: React.FC = () => {
+export const FullPizzaInfo: React.FC = () => {
   const navigate = useNavigate();
   const { pizzaId } = useParams();
   const dispatch = useDispatch();
@@ -83,7 +83,7 @@ const FullPizzaInfo: React.FC = () => {
     return (
       <div className={styles.container}>
         <h2>Loading Pizza...</h2>
-        <p>Please wait, your pizza will load in a moment</p>
+        <h3>Please wait, your pizza will load in a moment</h3>
       </div>
     );
   }
@@ -166,6 +166,11 @@ const FullPizzaInfo: React.FC = () => {
         />
       </div>
       <h4 className={styles.price}>{pizza.prices[selectedSizeIndex]} UAH</h4>
+      <Link to={'/'}>
+        <button onClick={onClickAdd} className="button button--outline button--add button--back">
+          <span>Back</span>
+        </button>
+      </Link>
       <button onClick={onClickAdd} className="button button--outline button--add">
         <svg
           width="12"

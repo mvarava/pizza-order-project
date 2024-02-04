@@ -21,7 +21,7 @@ export const filterList: FilterItem[] = [
   { name: 'alphabet (ASC)', sortProperty: SortPropertyEnum.TITLE_ASC },
 ];
 
-const Sort: React.FC<SortProps> = ({ sortType }) => {
+export const Sort: React.FC<SortProps> = memo(({ sortType }) => {
   const dispatch = useDispatch();
   const sortRef = useRef<HTMLDivElement>(null);
 
@@ -93,6 +93,4 @@ const Sort: React.FC<SortProps> = ({ sortType }) => {
       )}
     </div>
   );
-};
-
-export default memo(Sort);
+});

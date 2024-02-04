@@ -4,12 +4,16 @@ import { useSelector } from 'react-redux';
 
 import { fetchPizzas } from '../../redux/pizza/asyncActions';
 import { pizzaDataSelector } from '../../redux/pizza/selectors';
-import PizzaSkeleton from '../PizzaBlock/PizzaSkeleton';
-import Sort from '../Sort';
-import Categories from '../Categories';
-import PizzaBlock from '../PizzaBlock';
-import Pagination from '../Pagination';
-import PizzasFetchError from '../PizzasFetchError';
+
+import {
+  PizzaSkeleton,
+  Sort,
+  Categories,
+  PizzaBlock,
+  Pagination,
+  PizzasFetchError,
+} from '../../components';
+
 import { useAppDispatch } from '../../redux/store';
 import { setCategoryId, setPageCount } from '../../redux/filter/slice';
 import { sortSelector } from '../../redux/filter/selectors';

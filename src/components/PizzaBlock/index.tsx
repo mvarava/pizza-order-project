@@ -5,7 +5,7 @@ import { CartItem } from '../../redux/cart/types';
 import { addItem } from '../../redux/cart/slice';
 import { cartItemSelectorById, cartSelector } from '../../redux/cart/selectors';
 import { Link } from 'react-router-dom';
-import PizzaTypeSelector from './PizzaTypeSelector';
+import { PizzaTypeSelector } from '../../components';
 
 const typeName: string[] = ['thin', 'traditional'];
 
@@ -21,7 +21,7 @@ type PizzaBlockProps = {
   weights: number[];
 };
 
-const PizzaBlock: React.FC<PizzaBlockProps> = ({
+export const PizzaBlock: React.FC<PizzaBlockProps> = ({
   id,
   imageUrl,
   title,
@@ -100,5 +100,3 @@ const PizzaBlock: React.FC<PizzaBlockProps> = ({
     </div>
   );
 };
-
-export default PizzaBlock;

@@ -11,38 +11,31 @@ type PizzaTypeSelectorProps = {
   changeSize: (i: number) => void;
 };
 
-const PizzaTypeSelector: React.FC<PizzaTypeSelectorProps> = ({
-  sizes,
-  types,
-  selectedTypeIndex,
-  selectedSizeIndex,
-  changeType,
-  changeSize,
-}) => {
-  return (
-    <div className="pizza-block__selector">
-      <ul>
-        {types.map((typeId) => (
-          <li
-            key={typeId}
-            onClick={() => changeType(typeId)}
-            className={selectedTypeIndex === typeId ? 'active' : ''}>
-            {typeName[typeId]}
-          </li>
-        ))}
-      </ul>
-      <ul>
-        {sizes.map((size, index) => (
-          <li
-            key={size}
-            onClick={() => changeSize(index)}
-            className={selectedSizeIndex === index ? 'active' : ''}>
-            {size} sm
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
-};
-
-export default memo(PizzaTypeSelector);
+export const PizzaTypeSelector: React.FC<PizzaTypeSelectorProps> = memo(
+  ({ sizes, types, selectedTypeIndex, selectedSizeIndex, changeType, changeSize }) => {
+    return (
+      <div className="pizza-block__selector">
+        <ul>
+          {types.map((typeId) => (
+            <li
+              key={typeId}
+              onClick={() => changeType(typeId)}
+              className={selectedTypeIndex === typeId ? 'active' : ''}>
+              {typeName[typeId]}
+            </li>
+          ))}
+        </ul>
+        <ul>
+          {sizes.map((size, index) => (
+            <li
+              key={size}
+              onClick={() => changeSize(index)}
+              className={selectedSizeIndex === index ? 'active' : ''}>
+              {size} sm
+            </li>
+          ))}
+        </ul>
+      </div>
+    );
+  },
+);

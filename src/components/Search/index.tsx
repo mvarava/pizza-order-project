@@ -82,5 +82,3 @@ export const Search: React.FC = () => {
     </div>
   );
 };
-
-export default Search;

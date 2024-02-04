@@ -2,13 +2,11 @@ import { Link, useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 import logoSvg from '../assets/img/pizza-logo.svg';
-import Search from './Search';
+import { Search } from '../components';
 import { cartSelector } from '../redux/cart/selectors';
 import React, { useEffect, useRef } from 'react';
-import { useWhyDidYouUpdate } from 'ahooks';
 
-const Header: React.FC = () => {
-  console.log(useWhyDidYouUpdate);
+export const Header: React.FC = () => {
   const { items, totalPrice } = useSelector(cartSelector);
 
   const { pathname } = useLocation();
@@ -80,5 +78,3 @@ const Header: React.FC = () => {
     </div>
   );
 };
-
-export default Header;
