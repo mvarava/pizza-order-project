@@ -26,6 +26,7 @@ export const FullPizzaInfo: React.FC = () => {
     prices: number[];
     description: string;
     ingredients: string[];
+    weights: number[];
     sizes: number[];
     types: number[];
   }>();
@@ -155,6 +156,7 @@ export const FullPizzaInfo: React.FC = () => {
       <p>{pizza.description}</p>
       <h3 className={styles.ingredients}>Ingredients: </h3>
       {pizzaIngredients}
+      <h5 className={styles.weight}>{pizza.weights[selectedSizeIndex]}±50 g</h5>
       <div className={styles.selector}>
         <PizzaTypeSelector
           sizes={pizza.sizes}
