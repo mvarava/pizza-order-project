@@ -53,7 +53,7 @@ export const PizzaBlock: React.FC<PizzaBlockProps> = ({
       title,
       price: currentPizzaPrice,
       imageUrl,
-      ingredients,
+      ingredients: [],
       type: typeName[selectedTypeIndex],
       size: currentPizzaSize,
       count: 0,

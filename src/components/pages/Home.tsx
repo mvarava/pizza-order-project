@@ -55,7 +55,7 @@ const Home: React.FC = () => {
     getPizzas();
   }, [categoryId, sortType, searchValue, currentPage]);
 
-  const skeletons = [...new Array(6)].map((_, index) => <PizzaSkeleton key={index} />);
+  const skeletons = [...new Array(8)].map((_, index) => <PizzaSkeleton key={index} />);
 
   const pizzas = items.map((pizza: any) => <PizzaBlock key={pizza.id} {...pizza} />);
 

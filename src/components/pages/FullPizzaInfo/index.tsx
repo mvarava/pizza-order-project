@@ -49,12 +49,16 @@ export const FullPizzaInfo: React.FC = () => {
 
   const onClickAdd = () => {
     if (pizza) {
+      const removeIngredients = pizza.ingredients.filter((item) =>
+        selectedIngredients.includes(item),
+      );
+
       const item: CartItem = {
         id: pizza.id,
         title: pizza.title,
         price: pizza.prices[selectedSizeIndex],
         imageUrl: pizza.imageUrl,
-        ingredients: selectedIngredients,
+        ingredients: removeIngredients,
         type: typeName[selectedTypeIndex],
         size: pizza.sizes[selectedSizeIndex],
         count: 0,
@@ -169,7 +173,7 @@ export const FullPizzaInfo: React.FC = () => {
       </div>
       <h4 className={styles.price}>{pizza.prices[selectedSizeIndex]} UAH</h4>
       <Link to={'/'}>
-        <button onClick={onClickAdd} className="button button--outline button--add button--back">
+        <button className="button button--outline button--add button--back">
           <span>Back</span>
         </button>
       </Link>
